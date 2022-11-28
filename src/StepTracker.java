@@ -10,7 +10,7 @@ public class StepTracker {
             monthToData[i] = new MonthData();
         }
     }
-    int changenormPerDay(int normPerDay){
+    int setNormDay(int normPerDay){ //setNormDay
         if (normPerDay >= 0){
             this.normPerDay = normPerDay;
             return normPerDay;
@@ -19,11 +19,13 @@ public class StepTracker {
             return normPerDay;
         }
     }
-    MonthData[] setMonthToData(int month, int day, int step){
+
+    void printStat(int month){
+        monthToData[month].getSteps();
+    }
+    void saveToData(int month, int day, int step){ //saveToData
         monthData.setToDay(day, step);
         monthToData[month] = monthData;
-
-        return monthToData;
     }
 }
 class MonthData{
@@ -33,9 +35,14 @@ class MonthData{
         steps = new int[30];
     }
 
-    int[] setToDay(int day, int step){
+    void setToDay(int day, int step){
         steps[day] = steps[day] + step;
-        return steps;
     }
-    
+
+    void getSteps(){
+        for (int i = 0;i < steps.length;i++){
+            System.out.println( (i + 1) + " День пройдено: " + steps[i]);
+        }
+    }
+
 }

@@ -12,14 +12,16 @@ public class Main {
                 int month = scanner.nextInt();
                 int day = scanner.nextInt();
                 int step = scanner.nextInt();
-                stepTracker.setMonthToData(month,day,step);
+                stepTracker.saveToData(month,day,step);
             } else if (command == 2) {
-
+                System.out.println("Введите месяц");
+                int month = scanner.nextInt();
+                stepTracker.printStat(month);
             } else if(command == 3){
                 System.out.println("Цель " + stepTracker.normPerDay + " шагов в день.");
                 System.out.println("Какое значение вы хотели бы задать?");
                 int normPerDay = scanner.nextInt();
-                stepTracker.changenormPerDay(normPerDay);
+                stepTracker.setNormDay(normPerDay);
                 System.out.println("Ваша цель " + stepTracker.normPerDay + " шагов в день.");
             } else if (command == 0) {
                 break;
