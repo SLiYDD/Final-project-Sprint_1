@@ -2,7 +2,8 @@ public class StepTracker {
     MonthData[] monthToData;
     int normPerDay;
 
-    MonthData monthData =new MonthData();
+    MonthData monthData = new MonthData();
+
     public StepTracker(){
         monthToData = new MonthData[4];
         normPerDay = 10000;
@@ -21,7 +22,10 @@ public class StepTracker {
     }
 
     void printStat(int month){
-        monthToData[month].getSteps();
+        monthToData[month].getStepsToDay();
+        System.out.println("Общее количество шагов за месяц : " + monthToData[month].getStepsToMonth());
+        System.out.println("Максимальное пройденное количество шагов в месяце : " + monthToData[month].findMaxSteps());
+        System.out.println("Пройденная дистанция (в км) : " + monthToData[month].findDistatnce());
     }
     void saveToData(int month, int day, int step){ //saveToData
         monthData.setToDay(day, step);
@@ -31,6 +35,8 @@ public class StepTracker {
 class MonthData{
     int[] steps;
 
+    Converter converter = new Converter();
+
     public MonthData(){
         steps = new int[30];
     }
@@ -39,10 +45,32 @@ class MonthData{
         steps[day] = steps[day] + step;
     }
 
-    void getSteps(){
+    void getStepsToDay(){
         for (int i = 0;i < steps.length;i++){
             System.out.println( (i + 1) + " День пройдено: " + steps[i]);
         }
+    }
+    int getStepsToMonth(){
+        int sumToMonth = 0;
+        for (int i = 0;i<steps.length;i++){
+            sumToMonth += steps[i];
+        }
+        return sumToMonth;
+    }
+
+    int findMaxSteps(){
+        int maxSteps = steps[0];
+        for (int i = 1;i<steps.length;i++){
+            if (maxSteps < steps[i]){
+                maxSteps = steps[i];
+            }
+        }
+        return maxSteps;
+    }
+
+    double findDistatnce(){
+        double distance = converter.stepToKM(getStepsToMonth());
+        return distance;
     }
 
 }

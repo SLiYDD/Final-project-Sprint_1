@@ -5,6 +5,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         StepTracker stepTracker = new StepTracker();
         while (true){
+            System.out.println("++++++++++++++++++++++|MENU|++++++++++++++++++++++++");
             printMenu();
             int command = scanner.nextInt();
             if (command == 1){
