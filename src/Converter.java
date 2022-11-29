@@ -1,12 +1,14 @@
 public class Converter {
     double sizeStep = 0.75;
     int caloriesPerStep = 50;
-    public double stepToKM(int sumToMonth){
+
+    int stepToKM(int sumToMonth) {
         double distance = sumToMonth * sizeStep;
-        return distance/1000;
+        return (int) (distance / 1000);
     }
 
-    public void stepToCalories(){
-
+    int stepToCalories(int sumToMonth) {
+        int energy = sumToMonth * caloriesPerStep;
+        return energy / 1000;
     }
 }
